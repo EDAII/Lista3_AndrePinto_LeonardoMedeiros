@@ -5,9 +5,38 @@ import time
 
 from matplotlib import pyplot
 
-import sys
-
-#sys.setrecursionlimit(100000)
+class BloodMessage:
+	Owner = ''
+	AreaNumber = 0
+	WorldNumber = 0
+	XCoord = 0
+	YCoord = 0
+	ZCoord = 0
+	Angle = 0
+	TextID1 = 0
+	TextID2 = 0
+	Text = ''
+	PositiveRatings = 0
+	NegativeRatings = 0
+	UnixTime = ''
+	TimeString = ''
+	
+	
+	def __init__(self, Owner, WorldNumber, XCoord, YCoord, ZCoord, Text):
+		self.Owner = Owner
+		self.WorldNumber = WorldNumber
+		self.XCoord = XCoord
+		self.YCoord = YCoord
+		self.ZCoord = ZCoord
+		self.Text = Text
+	
+	def __str__(self):
+		return self.Text
+		
+	def __lt__(self, other):
+		if(self.WorldNumber == other.WorldNumber):
+			return self.Owner < other.Owner
+		return self.WorldNumber < other.WorldNumber
 
 file = open("BloodMessages.json", "r")
 jsondata = file.read()
@@ -15,6 +44,9 @@ jsondata = file.read()
 jdata = json.loads(jsondata)
 
 data = jdata['BloodMessages']  # Lista de dicionarios de BloodMessages
+messages = []
+for message in data:
+	messages.append(BloodMessage(message['Owner'], message['WorldNumber'], message['XCoord'], message['YCoord'], message['ZCoord'], message['Text']))
 
 def mergeSort(arr): 
 	if len(arr) > 1: 
@@ -82,7 +114,7 @@ mergeSort(arr2)
 end = time.time()
 merge_time = end - begin
 
-print('O Merge sort demorou {} segundo e o Quick sorte demorou {} segundo'.format(quick_time, merge_time))
+print('O Merge sort demorou {} segundo e o Quick sort demorou {} segundo'.format(quick_time, merge_time))
 
 Messages_per_world_X = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [],
 					  6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 
@@ -92,21 +124,21 @@ Messages_per_world_Y = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [],
 					  6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 
 					  12: [], 13: [], 14: [], 15: [], 16: [], 17: [], 18: []}
 					  
-for each in data:
+for each in arr1:
 	Messages_per_world_X[each['WorldNumber']].append(each['XCoord'])
 	Messages_per_world_Y[each['WorldNumber']].append(each['YCoord'])
 
 
 
-for i in range(9):
-	fig, ax = pyplot.subplots()
-
+#for i in range(9):
+#	fig, ax = pyplot.subplots()
+#
 	pyplot.xlabel('Position X')
 	pyplot.ylabel('Position Y')
-	ax.scatter(Messages_per_world_X[i+10], Messages_per_world_Y[i+10], label='World: '+str(i+10))
+#	ax.scatter(Messages_per_world_X[i+10], Messages_per_world_Y[i+10], label='World: '+str(i+10))
 	
-	pyplot.legend()
+#	pyplot.legend()
 
-	pyplot.show()
+#	pyplot.show()
 	
 	
