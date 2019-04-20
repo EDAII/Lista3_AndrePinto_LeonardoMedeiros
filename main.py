@@ -3,7 +3,7 @@ import matplotlib
 import random
 import time
 
-from matplotlib import pyplot as plt
+from matplotlib import pyplot
 
 import sys
 
@@ -69,7 +69,7 @@ def quickSort(arr,low,high):
 		quickSort(arr, low, pi-1) 
 		quickSort(arr, pi+1, high) 
 		
-print(len(data))
+print("Foram lidos: " + str(len(data)) + " Blood Messages")
 arr1 = data
 begin = time.time()
 quickSort(arr1, 0, len(arr1)-1)
@@ -83,3 +83,30 @@ end = time.time()
 merge_time = end - begin
 
 print('O Merge sort demorou {} segundo e o Quick sorte demorou {} segundo'.format(quick_time, merge_time))
+
+Messages_per_world_X = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [],
+					  6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 
+					  12: [], 13: [], 14: [], 15: [], 16: [], 17: [], 18: []}
+					  
+Messages_per_world_Y = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [],
+					  6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 
+					  12: [], 13: [], 14: [], 15: [], 16: [], 17: [], 18: []}
+					  
+for each in data:
+	Messages_per_world_X[each['WorldNumber']].append(each['XCoord'])
+	Messages_per_world_Y[each['WorldNumber']].append(each['YCoord'])
+
+
+
+for i in range(9):
+	fig, ax = pyplot.subplots()
+
+	pyplot.xlabel('Position X')
+	pyplot.ylabel('Position Y')
+	ax.scatter(Messages_per_world_X[i+10], Messages_per_world_Y[i+10], label='World: '+str(i+10))
+	
+	pyplot.legend()
+
+	pyplot.show()
+	
+	
