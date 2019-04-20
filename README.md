@@ -10,6 +10,7 @@ Leonardo de Araujo Medeiros - 17/0038891
 1. Faça o clone deste projeto com ```$ git clone https://github.com/EDAII/Lista3_AndrePinto_LeonardoMedeiros.git ```
 2. Acesse a pasta do projeto via terminal
 3. Execute a aplicação com ``` $ python3 main.py``` 
+> OBS: Necessário instalar o [matplotlib](https://matplotlib.org/index.html).
 
 ## Ideia proposta
 Dado o dataset das mensagens gravadas por jogadores do jogo Dark Souls coletados entre 2018-03-05 e 2018-03-08 do tráfego de rede pública gerado pelos clientes do jogo, nos propomos a ordena-las para possibilitar uma busca mais eficiente nas mensagens, que poderiam então ser encontradas em ` log (n)` , além disto, analisar qual seria o melhor algoritmo a se aplicar num dataset como este, onde uma das chaves de ordenação, o numero de mundos, se repetia constantemente.
